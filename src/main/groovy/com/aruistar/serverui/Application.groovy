@@ -14,6 +14,19 @@ class Application {
 //        def path = Application.class.getResource("/").toString().replace("file:", "").replace("jar:", "").replace("!", "");
         File file = new File(getProjectPath() + '/application.yml');
         Yaml yaml = new Yaml();
+        if (!file.exists()) {
+            file.write('''
+server:
+  port: 7070
+
+isLog: true
+
+spring:
+  resources: {add-mappings: true}
+logging:
+  level: {org.springframework.web: ERROR}
+''');
+        }
         def config = yaml.load(file.text);
 
         ui.config = config;
