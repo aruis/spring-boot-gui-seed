@@ -15,17 +15,17 @@ class Server {
 //        SpringApplication.run(Server.class, args)
 //    }
 
-    public DispatcherServlet flexDispatcherServlet() {
-        XmlWebApplicationContext appContext = new XmlWebApplicationContext();
-        appContext.setConfigLocation("classpath:/META-INF/flex-servlet.xml");
-        return new DispatcherServlet(appContext);
-    }
-
-    @Bean
-    public ServletRegistrationBean dispatcherRegistrationFlex() {
-        ServletRegistrationBean registration = new ServletRegistrationBean(flexDispatcherServlet(), "/messagebroker/*");
-        registration.name = 'flex'
-        registration.setLoadOnStartup(1)
-        return registration;
-    }
+//    public DispatcherServlet flexDispatcherServlet() {
+//        XmlWebApplicationContext appContext = new XmlWebApplicationContext();
+//        appContext.setConfigLocation("classpath:/META-INF/flex-servlet.xml");
+//        return new DispatcherServlet(appContext);
+//    }
+//
+//    @Bean
+//    public ServletRegistrationBean dispatcherRegistrationFlex() {
+//        ServletRegistrationBean registration = new ServletRegistrationBean(flexDispatcherServlet(), "/messagebroker/*");
+//        registration.name = 'flex'
+//        registration.setLoadOnStartup(1)
+//        return registration;
+//    }
 }
