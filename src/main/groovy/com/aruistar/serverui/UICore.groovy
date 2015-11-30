@@ -138,16 +138,19 @@ public class UICore extends javax.swing.JPanel {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        String[] args = ['--spring.config.location=' + Application.getProjectPath() + '/application.yml'].toArray();
+//        System.setProperty("spring.resources.static-locations", Application.getProjectPath()+"/static/");
+        System.setProperty('spring.config.location', Application.getProjectPath() + '/application.yml')
+        //String[] args = ['--spring.config.location=' + Application.getProjectPath() + '/application.yml'].toArray();
         new Thread({ ->
             isLogCheckBox.enabled = startButton.enabled = stopButton.enabled = portTextField.enabled = saveButton.enabled = false;
             infoLabel.text = '启动中...'
             try {
-                appContext = SpringApplication.run(Server.class, args)
+                appContext = SpringApplication.run(Server.class)
                 infoLabel.text = '已启动'
                 isLogCheckBox.enabled = startButton.enabled = stopButton.enabled = portTextField.enabled = saveButton.enabled = false;
                 stopButton.enabled = true;
             } catch (e) {
+                e.printStackTrace()
                 infoLabel.text = '启动失败'
                 isLogCheckBox.enabled = startButton.enabled = stopButton.enabled = portTextField.enabled = saveButton.enabled = true;
                 stopButton.enabled = false;

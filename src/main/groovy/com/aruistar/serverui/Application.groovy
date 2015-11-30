@@ -15,17 +15,21 @@ class Application {
         File file = new File(getProjectPath() + '/application.yml');
         Yaml yaml = new Yaml();
         if (!file.exists()) {
-            file.write('''
+            file.write("""
 server:
   port: 7070
 
 isLog: true
 
-spring:
-  resources: {add-mappings: true}
+
 logging:
   level: {org.springframework.web: ERROR}
-''');
+
+spring:
+  resources:
+    add-mappings: true
+    static-locations: file:${getProjectPath()}/static/
+""");
         }
         def config = yaml.load(file.text);
 
