@@ -20,9 +20,6 @@ public class UICore extends javax.swing.JPanel {
     def config
     def save
 
-    /**
-     * Creates new form TestJPanel
-     */
     public UICore() {
         initComponents();
         stopButton.enabled = false
@@ -214,10 +211,6 @@ public class UICore extends javax.swing.JPanel {
 
     def setPort(Object o) {
         portTextField.text = o.toString();
-    }
-
-    def setLogPath(Object o) {
-        logTextField.text = o.toString();
     }
 
     public void alert(String text) {

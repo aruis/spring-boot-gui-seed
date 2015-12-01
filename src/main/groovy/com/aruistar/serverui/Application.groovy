@@ -9,13 +9,34 @@ import javax.swing.*
  */
 class Application {
     public static void main(String[] args) {
-        //SpringApplication.run(Server.class, args);
+
+        //自动创建static 静态文件
+        File webapp = new File(getProjectPath() + '/static/')
+        if (!webapp.exists()) {
+            webapp.mkdir();
+            File index = new File(getProjectPath() + '/static/index.html')
+            index.write("""
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>Hello Spring-Boot-GUI-Seed</h1>
+<a href="https://github.com/aruis/spring-boot-gui-seed">Github</a>
+</body>
+</html>
+""")
+        }
+
         UICore ui = new UICore();
-//        def path = Application.class.getResource("/").toString().replace("file:", "").replace("jar:", "").replace("!", "");
-        File file = new File(getProjectPath() + '/application.yml');
+
+        //自动创建yml配置文件
+        File ymlfile = new File(getProjectPath() + '/application.yml');
         Yaml yaml = new Yaml();
-        if (!file.exists()) {
-            file.write("""
+        if (!ymlfile.exists()) {
+            ymlfile.write("""
 server:
   port: 7070
 
@@ -28,10 +49,9 @@ logging:
 spring:
   resources:
     add-mappings: true
-    static-locations: file:${getProjectPath()}/static/
 """);
         }
-        def config = yaml.load(file.text);
+        def config = yaml.load(ymlfile.text);
 
         ui.config = config;
         if (config.isLog) {
@@ -40,11 +60,14 @@ spring:
             config.logging.path = null;
         }
 
-//        config.spring['resources.static-locations']=getProjectPath() + '/';
+        //确定静态文件路径
+        config.spring.resources['static-locations'] = 'file:' + getProjectPath() + '/static/';
 
-        ui.save = { -> file.write(yaml.dump(config)) }
+        ui.save = { -> ymlfile.write(yaml.dump(config)) }
 
-        file.write(yaml.dump(config));
+        ymlfile.write(yaml.dump(config));
+
+        //向ui提供"端口"和"是否启动日志"信息
         ui.setPort(config.server.port);
         ui.setIsLog(config.isLog);
 
@@ -55,7 +78,7 @@ spring:
                 frame.setContentPane(ui);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setResizable(false);
-                frame.setLocationRelativeTo(null);// 居中显示
+                frame.setLocationRelativeTo(null);
                 frame.pack();
                 frame.setVisible(true);
             }
@@ -64,6 +87,7 @@ spring:
 
     }
 
+    //获取当前文件的运行路径
     public static String getProjectPath() {
 
 
