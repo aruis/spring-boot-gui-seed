@@ -1,8 +1,7 @@
 package com.aruistar.serverui
 
+import com.aruistar.serverui.ui.UICore
 import org.yaml.snakeyaml.Yaml
-
-import javax.swing.*
 
 /**
  * Created by liurui on 15/11/25.
@@ -70,19 +69,6 @@ spring:
         //向ui提供"端口"和"是否启动日志"信息
         ui.setPort(config.server.port);
         ui.setIsLog(config.isLog);
-
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrame frame = new JFrame("软件应用配置");
-                frame.setSize(520, 360);
-                frame.setContentPane(ui);
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.setResizable(false);
-                frame.setLocationRelativeTo(null);
-                frame.pack();
-                frame.setVisible(true);
-            }
-        });
 
 
     }

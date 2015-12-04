@@ -15,8 +15,8 @@ buildscript {
 apply plugin: 'groovy'
 apply plugin: 'spring-boot'
 
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+//sourceCompatibility = 1.7
+//targetCompatibility = 1.7
 
 version = '1.0'
 
@@ -31,7 +31,9 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.5'
     compile "org.springframework.boot:spring-boot-starter-web"
     compile 'org.yaml:snakeyaml:1.16'
-
+    compile 'com.intellij:forms_rt:7.0.3'
+    compile 'com.jgoodies:jgoodies-forms:1.9.0'
+    compile 'com.jgoodies:jgoodies-common:1.8.1'
 
 
     compile "org.springframework.flex:spring-flex-core:1.6.0.RC1"
