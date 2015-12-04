@@ -28,7 +28,7 @@ repositories {
 
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.4.5'
+    compile 'org.codehaus.groovy:groovy:2.4.5'
     compile "org.springframework.boot:spring-boot-starter-web"
     compile 'org.yaml:snakeyaml:1.16'
     compile 'com.intellij:forms_rt:7.0.3'
