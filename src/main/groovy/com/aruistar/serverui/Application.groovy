@@ -31,25 +31,11 @@ class Application {
 
         UICore ui = new UICore();
 
+        Tool.initYml();
+
         //自动创建yml配置文件
         File ymlfile = new File(getProjectPath() + '/application.yml');
         Yaml yaml = new Yaml();
-        if (!ymlfile.exists()) {
-            ymlfile.write("""
-server:
-  port: 7070
-
-isLog: true
-
-
-logging:
-  level: {org.springframework.web: ERROR}
-
-spring:
-  resources:
-    add-mappings: true
-""");
-        }
         def config = yaml.load(ymlfile.text);
 
         ui.config = config;

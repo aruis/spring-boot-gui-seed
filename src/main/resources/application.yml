@@ -1,0 +1,14 @@
+server:
+  port: 7070
+
+spring:
+  resources:
+    add-mappings: true
+
+
+logging:
+  level: {org.springframework.web: ERROR}
+
+isLog: true
+
+
